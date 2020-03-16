@@ -1,0 +1,46 @@
+ CREATE DATABASE s1;
+Query OK, 1 row affected (0.05 sec)
+mysql> use s1;
+Database changed
+mysql> create table student(number int(10) primary key,
+    ->                      name char(10) not null);
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
+mysql> show tables
+    -> ;
++--------------+
+| Tables_in_s1 |
++--------------+
+| student      |
++--------------+
+1 row in set (0.05 sec)
+mysql>  INSERT INTO student values (01,'a');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO student values (21,'b');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO student values (03,'c');
+Query OK, 1 row affected (0.05 sec)
+
+mysql>  show tables;
++--------------+
+| Tables_in_s1 |
++--------------+
+| student      |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> create index index_n on student(name);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM student;
++--------+------+
+| number | name |
++--------+------+
+|      1 | a    |
+|     21 | b    |
+|      3 | c    |
++--------+------+
+3 rows in set (0.00 sec)
