@@ -1,0 +1,97 @@
+常见编译型高级编程语言数据库接口
+1.C、C++、Delphi都是编译型语言
+2.其数据库接口即为编译型高级编程语言数据库接口
+
+常见解释型高级编程语言数据库接口
+1.Python/JavaScript / Perl /Shell等都是解释型语言，其数据库接口即为解释型型高级编程语言数据库接口
+
+2.JDBC
+
+Python编程语言连接数据库的不同方式比较
+
+python连接MySQL数据库的多种方式（方式一）
+
+# 方式一：
+import mysql.connector
+ 
+# 打开数据库连接
+db = mysql.connector.connect(host='*.*.*.*',
+                             port=3306,
+                             user='*',      # 数据库IP、用户名和密码
+                             passwd='*',
+                             charset = 'utf8')       
+ 
+# 使用 cursor() 方法创建一个游标对象 cursor
+cursor = db.cursor()
+ 
+# 使用 execute()  方法执行 SQL 查询
+cursor.execute("show databases;")
+cursor.execute("use database_name;")
+cursor.execute("show tables;")
+ 
+# 使用 fetchone() 方法获取单条数据;使用 fetchall() 方法获取所有数据
+data = cursor.fetchall()
+ 
+for item in data:
+     print(item[0])
+ 
+# 关闭数据库连接
+db.close()
+python连接MySQL数据库的多种方式（方式二）
+
+# 方式二：
+import MySQLdb
+ 
+# 打开数据库连接
+conn = MySQLdb.connect(host='*.*.*.*',
+                       port=3306,
+                       user='*',
+                       passwd='*',
+                       charset = 'utf8'
+                       )
+                        
+# 使用 cursor() 方法创建一个游标对象 cursor
+cursor = conn.cursor()
+ 
+# 使用 execute()  方法执行 SQL 查询
+cursor.execute("show databases;")
+cursor.execute("use database_name;")
+cursor.execute("show tables;")
+cursor.execute("select * from tables_name")
+ 
+# 使用 fetchone() 方法获取单条数据;使用 fetchall() 方法获取所有数据
+data = cursor.fetchall()
+for item in data:
+    print(item)
+ 
+# 关闭数据库连接
+cursor.close()
+python连接MySQL数据库的多种方式（方式三）
+
+# 方式三：
+import pymysql
+ 
+# 打开数据库连接
+conn = pymysql.connect(host='*.*.*.*',
+                       port=3306,
+                       user='*', 
+                       passwd='*', 
+                       charset = 'utf8'
+                       )
+                
+# 使用 cursor() 方法创建一个游标对象 cursor                       
+cursor = conn.cursor()
+ 
+# 使用 execute()  方法执行 SQL 查询
+cursor.execute("show databases;")
+cursor.execute("use database_name;")
+cursor.execute("show tables;")
+cursor.execute("select * from tables_name")
+ 
+# 使用 fetchone() 方法获取单条数据;使用 fetchall() 方法获取所有数据
+data = cursor.fetchall()
+for item in data:
+    print(item[0])
+     
+# 关闭数据库连接
+cursor.close()
