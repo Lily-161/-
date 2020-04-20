@@ -1,0 +1,26 @@
+第一题
+
+CREATE USER 'right'@'localhost' IDENTIFIED VIA mysql_native_password USING '***';
+GRANT SELECT, INSERT, UPDATE, CREATE, DROP, RELOAD, SHUTDOWN, PROCESS, FILE, REFERENCES, INDEX, ALTER, SHOW DATABASES, SUPER, CREATE TEMPORARY TABLES, LOCK TABLES, REPLICATION SLAVE, REPLICATION CLIENT, CREATE VIEW, EVENT, TRIGGER, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, CREATE USER, EXECUTE ON *.* TO 'right'@'localhost' REQUIRE NONE WITH GRANT OPTION MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
+
+第二题
+create table test(id int,name varchar(20));
+insert into test values(1,'watson');
+mysql -uroot -p -D cddl < c:/batchmysql/batchfile.txt
+
+batchfile.txt的内容：
+insert into test select * from test;
+insert into test select * from test;
+insert into test select * from test;
+insert into test select * from test;
+insert into test select * from test;
+insert into test select * from test;
+insert into test select * from test;
+insert into test select * from test;
+insert into test select * from test;
+insert into test select * from test;
+insert into test select * from test;
+insert into test select * from test;
+insert into test select * from test;
+insert into test select * from test;
+insert into test select * from test;
