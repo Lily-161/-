@@ -130,6 +130,18 @@ from book where MATCH (title, content) AGAINST ('四' IN NATURAL LANGUAGE MODE)
 ![Image text](https://github.com/Lily-161/-/blob/master/个人项目/image%20file/结果5.jpg)
 
 ---
+经过试验，这样还有一个小问题，就是不能单独对某个字段进行全文检索，因为我一开始建表的时候是吧“title”和“content”两个字段联合起来的，解决办法很简单，给他们各自单独重新建立全文索引就行。代码如下：
+
+```
+alter table `book` add fulltext index fulltext_content(`title`) WITH PARSER ngram;
+```
+
+```
+alter table `book` add fulltext index fulltext_content(`content`) WITH PARSER ngram;
+```
+
+---
+
 ## 心得
 ### 这个搜索引擎还是非常基础，他不能一次性把不同分词长度的关键词检索出来，但是我觉得可以用php网页稍微完善一下，做一个前端，比如做几个网页：“单字搜索”页面，“标题搜索页面”、“内容搜索页面”，及“全文检索页面”，每个页面用相应地SQL语句就行了。
 
