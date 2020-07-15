@@ -89,8 +89,7 @@ select *, MATCH (title, content) AGAINST ('小说') as score
 from book where MATCH (title, content) AGAINST ('小说' IN NATURAL LANGUAGE MODE)
 ```
 ### 搜索结果
-![Image text](https://github.com/Lily-161/-/blob/master/个人项目/image%20file/结果1.jpg)
-
+![结果1.jpg](https://github.com/Lily-161/-/blob/master/个人项目/image%20file/结果1.jpg)
 
 ---
 ### 2.2 试试以“四世同堂”为关键词进行搜索，搜索代码：
