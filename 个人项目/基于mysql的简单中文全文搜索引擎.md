@@ -73,11 +73,16 @@ INSERT INTO `book` (`id`, `title`, `content`) VALUES
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 ```
+---
 
 ### 建表结果
 ### 这是一个很简单的表，我在title和content字段建立了全文索引。
 ![表结构.jpg](https://github.com/Lily-161/-/blob/master/个人项目/image%20file/表结构.jpg)
+
+---
 ## 2 搜索
+
+---
 ### 2.1试试以“小说”为关键词进行搜索，搜索代码：
 ```
 select *, MATCH (title, content) AGAINST ('小说') as score
@@ -85,7 +90,8 @@ from book where MATCH (title, content) AGAINST ('小说' IN NATURAL LANGUAGE MOD
 ```
 ### 搜索结果
 ![Image text](https://github.com/Lily-161/-/blob/master/个人项目/image%20file/结果1.jpg)
-![Image text]()
+
+
 ---
 ### 2.2 试试以“四世同堂”为关键词进行搜索，搜索代码：
 ```
@@ -94,6 +100,7 @@ from book where MATCH (title, content) AGAINST ('四世同堂' IN NATURAL LANGUA
 ```
 ### 搜索结果 
 ![Image text](https://github.com/Lily-161/-/blob/master/个人项目/image%20file/结果2.jpg)
+
 ---
 ### 2.3 试试以“四世同”为关键词进行搜索，搜索代码：
 ```
@@ -102,6 +109,7 @@ from book where MATCH (title, content) AGAINST ('四世同' IN NATURAL LANGUAGE 
 ```
 ### 搜索结果
 ![Image text](https://github.com/Lily-161/-/blob/master/个人项目/image%20file/结果3.jpg)
+
 ---
 
 ### 2.3 试试以“四”为关键词进行搜索，搜索代码：
@@ -117,9 +125,11 @@ from book where MATCH (title, content) AGAINST ('四' IN NATURAL LANGUAGE MODE)
 ---
 #### 当我用一个关键字搜索时，搜索出错，其原因在于我的分词机制，我的分词是默认以2个字分词的，即四世同堂会分为“四世”和“同堂”，而“四”不在我的分词范围内，所以解决办法很简单，把分词长度设为1就好，方法如下：
 #### 在配置文件 my.ini 中修改 ngram_token_size = 1 ，并重启 mysqld 服务。
+
 ---
 #### 现在再来测试，结果成功了：
 ![Image text](https://github.com/Lily-161/-/blob/master/个人项目/image%20file/结果5.jpg)
+
 ---
 ## 心得
 ### 这个搜索引擎还是非常基础，他不能一次性把不同分词长度的关键词检索出来，但是我觉得可以用php网页稍微完善一下，做一个前端，比如做几个网页：“单字搜索”页面，“标题搜索页面”、“内容搜索页面”，及“全文检索页面”，每个页面用相应地SQL语句就行了。
